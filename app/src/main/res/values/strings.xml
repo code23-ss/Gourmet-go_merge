@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Main screen</string>
+    <string-array name="city_array">
+        <item>Seoul</item>
+        <item>Busan</item>
+        <item>Jeju</item>
+    </string-array>
+</resources>
