@@ -59,47 +59,111 @@
             </LinearLayout>
 
             <!-- 셋째줄 -->
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/book"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/button_design_oval"
+                        android:padding="15dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/book"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="Book"
+                        android:textSize="15dp"
+                        android:gravity="center" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/wait"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/button_design_oval"
+                        android:padding="15dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginLeft="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/wait"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="Wait"
+                        android:textSize="15dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/hotdeals"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/button_design_oval"
+                        android:padding="10dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginLeft="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/hotdeals"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="Hot Deals"
+                        android:textSize="15dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/guide"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/button_design_oval"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginLeft="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/guide"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="Guide"
+                        android:textSize="15dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
 
-                <Button
-                    android:layout_width="123dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_design"
-                    android:text="Book" />
-
-                <Button
-                    android:layout_width="123dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
-                    android:background="@drawable/button_design"
-                    android:text="Waiting" />
-            </LinearLayout>
-
-            <!-- 넷째줄 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:layout_width="123dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1.3dp"
-                    android:background="@drawable/button_design"
-                    android:text="Hot Deals" />
-
-                <Button
-                    android:layout_width="125dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginTop="1.3dp"
-                    android:background="@drawable/button_design"
-                    android:text="Guide" />
             </LinearLayout>
 
             <!-- 다섯째줄 (인기 레스토랑 및 바) -->
@@ -112,7 +176,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="50dp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="Top Restaurant/Bar"
                     android:textSize="24sp" />
             </LinearLayout>
@@ -135,7 +199,7 @@
 
                         <ImageView
                             android:id="@+id/newly_steakhouse"
-                            android:layout_width="400dp"
+                            android:layout_width="300dp"
                             android:layout_height="250dp"
                             android:background="@drawable/round"
                             android:clipToOutline="true"
@@ -151,6 +215,7 @@
                             android:textSize="20sp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="casual"
                             />
 
                     </RelativeLayout>
@@ -163,7 +228,7 @@
 
                         <ImageView
                             android:id="@+id/la_sacala"
-                            android:layout_width="400dp"
+                            android:layout_width="300dp"
                             android:layout_height="250dp"
                             android:background="@drawable/round"
                             android:clipToOutline="true"
@@ -178,7 +243,8 @@
                             android:textColor="#000000"
                             android:textSize="20sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="casual"/>
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -189,7 +255,7 @@
 
                         <ImageView
                             android:id="@+id/haeundae_cielo"
-                            android:layout_width="400dp"
+                            android:layout_width="300dp"
                             android:layout_height="250dp"
                             android:background="@drawable/round"
                             android:clipToOutline="true"
@@ -204,7 +270,8 @@
                             android:textColor="#000000"
                             android:textSize="20sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="casual"/>
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -215,7 +282,7 @@
 
                         <ImageView
                             android:id="@+id/bar_nix"
-                            android:layout_width="400dp"
+                            android:layout_width="300dp"
                             android:layout_height="250dp"
                             android:background="@drawable/round"
                             android:clipToOutline="true"
@@ -230,7 +297,8 @@
                             android:textColor="#000000"
                             android:textSize="20sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="casual"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -246,7 +314,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="50dp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="Micheline Restaurants 2024"
                     android:textSize="24sp" />
 
@@ -287,7 +355,8 @@
                             android:textColor="#000000"
                             android:textSize="20sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="casual"/>
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -313,7 +382,8 @@
                             android:textColor="#000000"
                             android:textSize="20sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="casual"/>
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -339,7 +409,8 @@
                             android:textColor="#000000"
                             android:textSize="20sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="casual"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -356,7 +427,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="50dp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="Browse by Location"
                     android:textSize="24sp" />
 
@@ -397,7 +468,8 @@
                                 android:text="Haeundae"
                                 android:textColor="@android:color/black"
                                 android:padding="4dp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-smallcaps"/>
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -427,7 +499,8 @@
                                 android:text="Gwangalli"
                                 android:textColor="@android:color/black"
                                 android:padding="4dp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-smallcaps"/>
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -457,37 +530,8 @@
                                 android:text="Gangseo-gu"
                                 android:textColor="@android:color/black"
                                 android:padding="4dp"
-                                android:textStyle="bold" />
-
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="200dp"
-                        android:layout_height="203dp"
-                        app:cardCornerRadius="10dp"
-                        android:layout_marginLeft="10dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/jung_gu"
-                                android:scaleType="centerCrop" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="8dp"
-                                android:text="Jung-gu"
-                                android:textColor="@android:color/black"
-                                android:padding="4dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-smallcaps"/>
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -498,15 +542,14 @@
             <!-- 여덟째줄 (음식 타입) -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="50dp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="Cuisine"
                     android:textSize="24sp" />
             </LinearLayout>
@@ -514,7 +557,8 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
+                android:scrollbars="none"
+                android:id="@+id/horizontal_scroll_view">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -522,719 +566,74 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button_korean"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
-                        android:background="@drawable/button_selected"
-                        android:text="Korean" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/korean_restaurant_scroll_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design">
-
-                                <ImageView
-                                    android:id="@+id/soban"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/soban"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/soban"
-                                    android:text="Soban"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/yeomeum"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/yeomeum"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/yeomeum"
-                                    android:text="Yeomeum"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/halmae"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/halmae"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/halmae"
-                                    android:text="Halmaejib"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
+                        android:background="@drawable/button_design"
+                        android:text="Korean"
+                        android:id="@+id/korean"/>
 
                     <Button
-                        android:id="@+id/button_Chinese"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/button_selected"
-                        android:text="Chinese" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/chinese_restaurant_scroll_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design">
-
-                                <ImageView
-                                    android:id="@+id/palais"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/palais"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/palais"
-                                    android:text="Palais de Chine"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/sinbalwon"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/sinbalwon"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/sinbalwon"
-                                    android:text="Sinbalwon"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/bangneyhyang"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/bangneyhyang"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/bangneyhyang"
-                                    android:text="Bangneyhyang"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
+                        android:background="@drawable/button_design"
+                        android:text="Chinese"
+                        android:id="@+id/chinese"/>
 
                     <Button
-                        android:id="@+id/button_Italian"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/button_selected"
-                        android:text="Italian" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/italian_restaurant_scroll_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design">
-
-                                <ImageView
-                                    android:id="@+id/osteria"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/osteria"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/osteria"
-                                    android:text="Osteria La Civeta"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/chef_lee"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/chef_lee"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/chef_lee"
-                                    android:text="Chef Lee"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/deli"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/deli"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/deli"
-                                    android:text="Pasta Delizio"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
+                        android:background="@drawable/button_design"
+                        android:text="Italian"
+                        android:id="@+id/italian"/>
 
                     <Button
-                        android:id="@+id/button_Japanese"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/button_selected"
-                        android:text="Japanese" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/japanese_restaurant_scroll_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design">
-
-                                <ImageView
-                                    android:id="@+id/tenpura"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/tenpura"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/tenpura"
-                                    android:text="Tempura Taiga"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/haemok"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/haemok"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/haemok"
-                                    android:text="Haemok"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/hito"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/hito"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/hito"
-                                    android:text="Hito"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
+                        android:background="@drawable/button_design"
+                        android:text="Japanese"
+                        android:id="@+id/japanese"/>
 
                     <Button
-                        android:id="@+id/button_Fusion"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/button_selected"
-                        android:text="Fushion" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/fusion_restaurant_scroll_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design">
-
-                                <ImageView
-                                    android:id="@+id/kitchen"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/kitchen"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/kitchen"
-                                    android:text="Kitchen Thirio"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/yeije"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/yeije"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/yeije"
-                                    android:text="Yeije"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/mouvett"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/mouvett"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/mouvett"
-                                    android:text="Mouvett"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
+                        android:background="@drawable/button_design"
+                        android:text="Fushion"
+                        android:id="@+id/fushion"/>
 
                     <Button
-                        android:id="@+id/button_Asian"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/button_selected"
-                        android:text="Asian" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/asian_restaurant_scroll_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design">
-
-                                <ImageView
-                                    android:id="@+id/seol"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/seol"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/seol"
-                                    android:text="Seol"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/aroi"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/aroi"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/aroi"
-                                    android:text="Aroi's BbingBbing"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/ddd"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/ddd"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/ddd"
-                                    android:text="Dong Dong Dong"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
-
+                        android:background="@drawable/button_design"
+                        android:text="Asian"
+                        android:id="@+id/asian"/>
                     <Button
-                        android:id="@+id/button_View_more"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/button_selected"
-                        android:text="View more" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/viewmore_restaurant_scroll_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:scrollbars="none"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design">
-
-                                <ImageView
-                                    android:id="@+id/namaste"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/namaste"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/namaste"
-                                    android:text="Namaste Haeundae"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/punjab"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/punjab"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/punjab"
-                                    android:text="Punjab"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/button_design"
-                                android:layout_marginLeft="10dp">
-
-                                <ImageView
-                                    android:id="@+id/samar"
-                                    android:layout_width="320dp"
-                                    android:layout_height="200dp"
-                                    android:background="@drawable/round"
-                                    android:clipToOutline="true"
-                                    android:src="@drawable/samar"
-                                    android:scaleType="centerCrop"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/samar"
-                                    android:text="Samarkand"
-                                    android:textColor="#000000"
-                                    android:textSize="20sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
+                        android:background="@drawable/button_design"
+                        android:text="View more"
+                        android:id="@+id/viewmore"/>
 
                 </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:scaleType="centerCrop">
+
+                <LinearLayout
+                    android:id="@+id/contentLayout"
+                    android:layout_width="400dp"
+                    android:layout_height="300dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp" />
             </HorizontalScrollView>
 
         </LinearLayout>

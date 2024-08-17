@@ -17,7 +17,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,7 +24,8 @@
         <activity android:name=".SearchActivity"/>
         <activity android:name=".BusanActivity"/>
         <activity android:name=".JejuActivity"/>
-
+        <activity android:name=".BookActivity"/>
+        <activity android:name=".RestaurantsActivity"/> <!-- 이 줄을 추가 -->
     </application>
 
 </manifest>

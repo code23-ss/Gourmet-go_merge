@@ -67,22 +67,192 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:text="My reservations"
-                    android:layout_marginRight="70dp"/>
+                    android:layout_height="30dp"
+                    android:layout_marginRight="55dp"
+                    android:text="My reservations" />
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="30dp"
                     android:text="collections"
                     android:layout_marginRight="80dp"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="30dp"
                     android:text="setting"
-                    android:layout_marginRight="40dp"/>
+                    android:layout_marginRight="20dp"/>
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/title_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/user_id_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User ID"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/title_account"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+
+
+            <TextView
+                android:id="@+id/change_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change password"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/user_id_label"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/change_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change email"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/change_password"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/change_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/title_community"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Community"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/change_email"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/restriction_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restriction history"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/title_community"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/community_rules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Community rules"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/restriction_history"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/community_rules"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/title_application"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Application"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/community_rules"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/dark_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dark mode"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/title_application"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/dark_mode_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="System default"
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="@id/dark_mode"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/notification_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification settings"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/dark_mode"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/passcode_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passcode lock"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/notification_settings"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/clear_cache_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear cache data"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/passcode_lock"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
 
         </LinearLayout>
     </ScrollView>
