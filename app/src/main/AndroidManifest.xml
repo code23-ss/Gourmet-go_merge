@@ -12,20 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MainScreen"
         tools:targetApi="31">
+
+        <!-- MainActivity를 시작 액티비티로 설정 -->
         <activity
-            android:name=".MainActivity"
+            android:name=".MainscreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- SecondClassActivity 추가 -->
+        <activity
+            android:name=".SecondClassActivity"
+            android:exported="true" />
+
+        <!-- 기존 활동들 유지 -->
+        <activity android:name=".CreateAccountActivity"/>
+        <activity android:name=".ForgotIDActivity"/>
+        <activity android:name=".ForgotPasswordActivity"/>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".BusanActivity"/>
         <activity android:name=".JejuActivity"/>
         <activity android:name=".BookActivity"/>
-        <activity android:name=".RestaurantsActivity"/> <!-- 이 줄을 추가 -->
+        <activity android:name=".RestaurantsActivity"/> <!-- 이 줄 추가 -->
+
     </application>
 
 </manifest>
