@@ -1,5 +1,6 @@
 package com.example.mainscreen;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,9 @@ public class ForgotIDActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_idactivity2);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         idTextView = findViewById(R.id.findIdtv1);
         backBtn = findViewById(R.id.backBtn);

@@ -31,6 +31,7 @@
         <!-- 기존 활동들 유지 -->
         <activity android:name=".CreateAccountActivity"/>
         <activity android:name=".ForgotIDActivity"/>
+        <activity android:name=".ForgotIDActivity2"/>
         <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".ProfileActivity"/>
