@@ -1,78 +1,48 @@
 package com.example.mainscreen;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.mainscreen.MainscreenActivity;
 
 public class ForgotIDActivity extends AppCompatActivity {
-
-    private EditText nameEditText;
-    private EditText emailEditText;
-    private Button findIDButton;
-
-    private DatabaseReference databaseReference;
+    EditText nameEditText, emailEditText;
+    Button findIdBtn, cancelBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_idactivity);
 
-        nameEditText = findViewById(R.id.nameEditText);
-        emailEditText = findViewById(R.id.emailEditText);
-        findIDButton = findViewById(R.id.findIDButton);
+        nameEditText = findViewById(R.id.findId_nameEditText);
+        emailEditText = findViewById(R.id.findId_emailEditText);
+        findIdBtn = findViewById(R.id.findIdBtn);
+        cancelBtn = findViewById(R.id.cancelBtn);
 
-        // Initialize Firebase Database reference
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
-
-        findIDButton.setOnClickListener(new View.OnClickListener() {
+        findIdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String name = nameEditText.getText().toString();
                 String email = emailEditText.getText().toString();
 
-                if (name.isEmpty() || email.isEmpty()) {
-                    Toast.makeText(ForgotIDActivity.this, "Please enter your name and email.", Toast.LENGTH_SHORT).show();
-                } else {
-                    findUserId(name, email);
-                }
+                // 이름과 전화번호 정보를 Intent에 담아서 FindIdActivity2로 전달
+                Intent intent = new Intent(ForgotIDActivity.this, ForgotIDActivity2.class);
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                startActivity(intent);
             }
         });
-    }
 
-    private void findUserId(String name, String email) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                boolean userFound = false;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String dbName = snapshot.child("name").getValue(String.class);
-                    String dbEmail = snapshot.child("email").getValue(String.class);
-                    String userId = snapshot.child("id").getValue(String.class);
-
-                    if (name.equals(dbName) && email.equals(dbEmail)) {
-                        Toast.makeText(ForgotIDActivity.this, "Your ID is: " + userId, Toast.LENGTH_LONG).show();
-                        userFound = true;
-                        break;
-                    }
-                }
-                if (!userFound) {
-                    Toast.makeText(ForgotIDActivity.this, "User not found.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ForgotIDActivity.this, "Error fetching data.", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                // 취소 버튼 클릭 시 MainActivity로 돌아감
+                Intent intent = new Intent(ForgotIDActivity.this, MainscreenActivity.class);
+                startActivity(intent);
             }
         });
     }
