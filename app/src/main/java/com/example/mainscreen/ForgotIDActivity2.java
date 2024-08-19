@@ -1,27 +1,24 @@
 package com.example.mainscreen;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mainscreen.MainscreenActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class ForgotIDActivity2 extends AppCompatActivity {
     TextView idTextView;
     Button backBtn;
-    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +33,9 @@ public class ForgotIDActivity2 extends AppCompatActivity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        String number = intent.getStringExtra("number");
+        String email = intent.getStringExtra("email"); // 'email' 변수로 Intent 값 받기
 
-        findUserId(name, number); // 사용자 이메일 찾는 메서드 호출
+        findUserId(name, email); // 'name'과 'email'로 사용자 검색
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,25 +46,26 @@ public class ForgotIDActivity2 extends AppCompatActivity {
         });
     }
 
-    // 사용자의 이름과 전화번호를 이용하여 이메일(아이디)을 찾는 메서드
-    private void findUserId(String name, String number) {
-        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference().child("UserAccount");
+    // 사용자의 이름과 이메일을 이용하여 ID를 찾는 메서드
+    private void findUserId(String name, String email) {
+        DatabaseReference userReference = FirebaseDatabase.getInstance().getReference().child("users");
         userReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 boolean found = false;
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    String userName = (String) userSnapshot.child("name").getValue();
-                    String userNumber = (String) userSnapshot.child("number").getValue();
-                    if (userName != null && userName.equals(name) && userNumber != null && userNumber.equals(number)) {
-                        String userId = (String) userSnapshot.child("id").getValue(); // 사용자의 아이디
-                        idTextView.setText("'" + userId + "' 입니다.");
-                        found = true;
+                    String userName = userSnapshot.child("name").getValue(String.class);
+                    String userEmail = userSnapshot.child("email").getValue(String.class); // 'email' 필드로 사용자 찾기
 
+                    Log.d("FirebaseData", "UserName: " + userName + ", UserEmail: " + userEmail);
+
+                    if (userName != null && userName.equals(name) && userEmail != null && userEmail.equals(email)) {
+                        String userID = userSnapshot.child("ID").getValue(String.class); // 대문자 'ID' 필드에서 사용자의 ID를 가져옴
+                        idTextView.setText("'" + userID + "' 입니다.");
+                        found = true;
                         break;
                     }
                 }
-
 
                 if (!found) {
                     idTextView.setText("해당하는 사용자를 찾을 수 없습니다.");
@@ -75,10 +73,10 @@ public class ForgotIDActivity2 extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("FirebaseError", "Database error: " + databaseError.getMessage());
                 idTextView.setText("오류가 발생했습니다. 다시 시도해주세요.");
             }
         });
     }
-
 }
