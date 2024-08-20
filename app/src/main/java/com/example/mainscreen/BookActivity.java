@@ -31,7 +31,9 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.book);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         // 뷰 객체 가져오기
         TextView restaurantNameTextView = findViewById(R.id.restaurant_name);
@@ -45,6 +47,7 @@ public class BookActivity extends AppCompatActivity {
         Button priceButton = findViewById(R.id.button_price);
         Button cuisineButton = findViewById(R.id.button_cuisine);
         Button locationButton = findViewById(R.id.button_location);
+        Button reviewButton = findViewById(R.id.button_review); // Review button
 
         // Intent로부터 레스토랑 이름 가져오기
         Intent intent = getIntent();
@@ -53,7 +56,7 @@ public class BookActivity extends AppCompatActivity {
         // JSON 파일에서 데이터 읽기
         List<RestaurantDetail> restaurantDetails = loadRestaurantDetailsFromJson();
         if (restaurantDetails == null) {
-            Log.e(TAG, "Failed to load restaurants.xml details from JSON.");
+            Log.e(TAG, "Failed to load restaurants.json details from JSON.");
             return;
         }
 
@@ -130,6 +133,19 @@ public class BookActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "Restaurant not found: " + restaurantName);
         }
+
+        // Book 버튼 클릭 시 Book2Activity로 이동
+        Button bookButton = findViewById(R.id.button_book); // 버튼의 ID를 맞춰주세요
+        bookButton.setOnClickListener(v -> {
+            Intent intentToBook2 = new Intent(BookActivity.this, Book2Activity.class);
+            startActivity(intentToBook2);
+        });
+
+        // Review 버튼 클릭 시 ReviewActivity로 이동
+        reviewButton.setOnClickListener(v -> {
+            Intent intentToReview = new Intent(BookActivity.this, ReviewActivity.class);
+            startActivity(intentToReview);
+        });
     }
 
     private int convertDpToPx(int dp) {

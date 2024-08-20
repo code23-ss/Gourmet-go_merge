@@ -1,8 +1,10 @@
 package com.example.mainscreen;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,19 +17,17 @@ import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mainscreen.ReviewSave;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WriteCommentActivity extends AppCompatActivity {
 
@@ -42,13 +42,16 @@ public class WriteCommentActivity extends AppCompatActivity {
     private CheckBox certificationCheckbox;
     private Button continueButton;
 
-    private Uri imageUri;
+    private FirebaseFirestore firestore;
     private static final int REQUEST_CODE_PICK_PHOTO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.write_comment);
+
+        // Initialize Firestore
+        firestore = FirebaseFirestore.getInstance();
 
         // Find views
         ratingBar = findViewById(R.id.ratingBar);
@@ -62,7 +65,7 @@ public class WriteCommentActivity extends AppCompatActivity {
         certificationCheckbox = findViewById(R.id.certificationCheckbox);
         continueButton = findViewById(R.id.continueButton);
 
-        // Date Spinner 초기화
+        // Date Spinner initialization
         List<String> months = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
@@ -76,7 +79,7 @@ public class WriteCommentActivity extends AppCompatActivity {
         dateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDate.setAdapter(dateAdapter);
 
-        // Purpose Spinner 초기화
+        // Purpose Spinner initialization
         String[] purposes = {
                 "Breakfast",
                 "Brunch",
@@ -95,7 +98,7 @@ public class WriteCommentActivity extends AppCompatActivity {
         purposeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPurpose.setAdapter(purposeAdapter);
 
-        // Spinner 선택 시 동작 처리
+        // Spinner selection handling
         spinnerPurpose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -109,35 +112,24 @@ public class WriteCommentActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // 아무 동작 없음
+                // No action needed
             }
         });
 
         // Photo upload click listener
         FrameLayout photoUploadContainer = findViewById(R.id.photoUploadContainer);
-        photoUploadContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open gallery to pick a photo
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, REQUEST_CODE_PICK_PHOTO);
-            }
+        photoUploadContainer.setOnClickListener(v -> {
+            // Open gallery to pick a photo
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, REQUEST_CODE_PICK_PHOTO);
         });
 
         // Continue button click listener
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (certificationCheckbox.isChecked()) {
-                    if (imageUri != null) {
-                        uploadImageAndSaveReview();
-                    } else {
-                        saveReviewData(null); // No image
-                    }
-                } else {
-                    // Show error message
-                    Toast.makeText(WriteCommentActivity.this, "You must certify before continuing", Toast.LENGTH_SHORT).show();
-                }
+        continueButton.setOnClickListener(v -> {
+            if (certificationCheckbox.isChecked()) {
+                saveReviewData();
+            } else {
+                Toast.makeText(WriteCommentActivity.this, "You must certify before continuing", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -146,53 +138,47 @@ public class WriteCommentActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_PICK_PHOTO && resultCode == RESULT_OK && data != null) {
-            imageUri = data.getData();
+            Uri selectedImage = data.getData();
             // Display selected image
-            photoIcon.setImageURI(imageUri);
+            photoIcon.setImageURI(selectedImage);
         }
     }
 
-    private void uploadImageAndSaveReview() {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference imageRef = storageRef.child("images/" + imageUri.getLastPathSegment());
+    private void saveReviewData() {
+        // Collect form data
+        float rating = ratingBar.getRating();
+        String date = spinnerDate.getSelectedItem().toString();
+        String purpose = spinnerPurpose.getSelectedItem().toString();
+        String otherPurpose = editTextOtherPurpose.getText().toString();
+        String reviewText = editReview.getText().toString();
+        String title = editTitle.getText().toString();
 
-        // Upload image to Firebase Storage
-        imageRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
-            imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                // Image uploaded successfully, get the download URL
-                String imageUrl = uri.toString();
-                saveReviewData(imageUrl);
-            }).addOnFailureListener(e -> {
-                Toast.makeText(WriteCommentActivity.this, "Failed to get image URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-        }).addOnFailureListener(e -> {
-            Toast.makeText(WriteCommentActivity.this, "Failed to upload image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        });
-    }
+        // If "Other" is selected, include the other purpose
+        if ("Other".equals(purpose) && !otherPurpose.isEmpty()) {
+            purpose = otherPurpose;
+        }
 
-    private void saveReviewData(String imageUrl) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reviewsRef = database.getReference("reviews");
+        // Create review data map
+        Map<String, Object> review = new HashMap<>();
+        review.put("rating", rating);
+        review.put("date", date);
+        review.put("purpose", purpose);
+        review.put("reviewText", reviewText);
+        review.put("title", title);
+        review.put("certified", certificationCheckbox.isChecked());
 
-        // Create a ReviewSave object
-        ReviewSave review = new ReviewSave();
-        review.setTitle(editTitle.getText().toString());
-        review.setRating(ratingBar.getRating());
-        review.setDate(spinnerDate.getSelectedItem().toString());
-        review.setPurpose(spinnerPurpose.getSelectedItem().toString());
-        review.setOtherPurpose(editTextOtherPurpose.getText().toString());
-        review.setReview(editReview.getText().toString());
-        review.setImageUrl(imageUrl);
-        review.setCertified(certificationCheckbox.isChecked());
-
-        // Push review data to Firebase Realtime Database
-        reviewsRef.push().setValue(review)
-                .addOnSuccessListener(aVoid -> {
+        // Save review data to Firestore
+        firestore.collection("reviews") // The name of the collection where reviews will be stored
+                .add(review)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("WriteCommentActivity", "Review added with ID: " + documentReference.getId());
                     Toast.makeText(WriteCommentActivity.this, "Review submitted successfully", Toast.LENGTH_SHORT).show();
+                    // Optionally, clear the form or navigate to another activity
+                    finish(); // Close the activity and go back to the previous screen
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(WriteCommentActivity.this, "Failed to submit review: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e("WriteCommentActivity", "Error adding review", e);
+                    Toast.makeText(WriteCommentActivity.this, "Error submitting review", Toast.LENGTH_SHORT).show();
                 });
     }
 }

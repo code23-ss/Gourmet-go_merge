@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Adults Section -->
+        <!-- People Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adults"
+                android:text="People"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:padding="8dp"
                 android:fontFamily="sans-serif-smallcaps"
@@ -29,54 +29,54 @@
                 android:textColor="#FFFFFF" />
 
             <RadioGroup
-                android:id="@+id/radioGroupAdults"
+                android:id="@+id/radioGrouppeople"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioAdults1"
+                    android:id="@+id/radiopeople1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1" />
                 <RadioButton
-                    android:id="@+id/radioAdults2"
+                    android:id="@+id/radiopeople2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"
                     android:checked="true"/>
                 <RadioButton
-                    android:id="@+id/radioAdults3"
+                    android:id="@+id/radiopeople3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3" />
                 <RadioButton
-                    android:id="@+id/radioAdults4"
+                    android:id="@+id/radiopeople4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4" />
                 <RadioButton
-                    android:id="@+id/radioAdults5"
+                    android:id="@+id/radiopeople5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5" />
                 <RadioButton
-                    android:id="@+id/radioAdults6"
+                    android:id="@+id/radiopeople6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="6" />
                 <RadioButton
-                    android:id="@+id/radioAdultsCustom"
+                    android:id="@+id/radiopeopleCustom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Custom" />
             </RadioGroup>
 
             <EditText
-                android:id="@+id/editTextCustomAdults"
+                android:id="@+id/editTextCustompeople"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter number of adults"
+                android:hint="Enter number of People"
                 android:inputType="number"
                 android:visibility="gone" />
         </LinearLayout>

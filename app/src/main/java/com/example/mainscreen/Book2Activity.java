@@ -1,5 +1,6 @@
 package com.example.mainscreen;
 
+import android.util.Log;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,14 +12,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Book2Activity extends AppCompatActivity {
 
-    private RadioGroup radioGroupTitle, radioGroupAdults;
+    private RadioGroup radioGroupTitle, radioGrouppeople;
     private EditText editTextFirstName, editTextLastName, editTextMobileNumber, editTextEmail, editTextSpecialRequests;
     private CheckBox checkBoxPersonal;
     private CheckBox checkBoxUpdates;
@@ -26,14 +30,19 @@ public class Book2Activity extends AppCompatActivity {
 
     private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
 
+    private FirebaseFirestore firestore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book2);
 
+        // Initialize Firestore
+        firestore = FirebaseFirestore.getInstance();
+
         // Initialize views
         radioGroupTitle = findViewById(R.id.radioGroupTitle);
-        radioGroupAdults = findViewById(R.id.radioGroupAdults);
+        radioGrouppeople = findViewById(R.id.radioGrouppeople);
         editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextMobileNumber = findViewById(R.id.editTextMobileNumber);
@@ -95,15 +104,41 @@ public class Book2Activity extends AppCompatActivity {
             String specialRequests = editTextSpecialRequests.getText().toString();
             boolean personal = checkBoxPersonal.isChecked();
             boolean updates = checkBoxUpdates.isChecked();
-            int adults = Integer.parseInt(((RadioButton) findViewById(radioGroupAdults.getCheckedRadioButtonId())).getText().toString());
+            int people = Integer.parseInt(((RadioButton) findViewById(radioGrouppeople.getCheckedRadioButtonId())).getText().toString());
 
-            // Display a confirmation message
-            Toast.makeText(Book2Activity.this, "Reservation made for " + title + " " + firstName + " " + lastName +
-                            "\nDate: " + selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear +
-                            "\nTime: " + selectedHour + ":" + (selectedMinute < 10 ? "0" + selectedMinute : selectedMinute) +
-                            "\nAdults: " + adults +
-                            "\nUpdates: " + (updates ? "Subscribed" : "Not Subscribed"),
-                    Toast.LENGTH_LONG).show();
+            // Save reservation data to Firestore
+            saveReservationData(title, firstName, lastName, mobileNumber, email, specialRequests, personal, updates, people);
         });
+    }
+
+    private void saveReservationData(String title, String firstName, String lastName, String mobileNumber, String email,
+                                     String specialRequests, boolean personal, boolean updates, int people) {
+        // Create reservation data map
+        Map<String, Object> reservation = new HashMap<>();
+        reservation.put("title", title);
+        reservation.put("firstName", firstName);
+        reservation.put("lastName", lastName);
+        reservation.put("mobileNumber", mobileNumber);
+        reservation.put("email", email);
+        reservation.put("specialRequests", specialRequests);
+        reservation.put("personal", personal);
+        reservation.put("updates", updates);
+        reservation.put("people", people);
+        reservation.put("date", String.format("%d/%d/%d", selectedDay, selectedMonth + 1, selectedYear));
+        reservation.put("time", String.format("%d:%02d", selectedHour, selectedMinute));
+
+        // Save to Firestore
+        firestore.collection("reservations") // The name of the collection where reservations will be stored
+                .add(reservation)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("Book2Activity", "Reservation added with ID: " + documentReference.getId());
+                    Toast.makeText(Book2Activity.this, "Reservation successfully made", Toast.LENGTH_SHORT).show();
+                    // Optionally, clear the form or navigate to another activity
+                    finish(); // Close the activity and go back to the previous screen
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Book2Activity", "Error adding reservation", e);
+                    Toast.makeText(Book2Activity.this, "Error making reservation", Toast.LENGTH_SHORT).show();
+                });
     }
 }

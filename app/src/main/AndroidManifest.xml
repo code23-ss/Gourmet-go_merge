@@ -39,6 +39,9 @@
         <activity android:name=".BusanActivity"/>
         <activity android:name=".JejuActivity"/>
         <activity android:name=".BookActivity"/>
+        <activity android:name=".Book2Activity"/>
+        <activity android:name=".ReviewActivity"/>
+        <activity android:name=".WriteCommentActivity"/>
         <activity android:name=".RestaurantsActivity"/> <!-- 이 줄 추가 -->
 
     </application>
