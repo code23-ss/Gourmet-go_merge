@@ -58,7 +58,7 @@ public class MainscreenActivity extends AppCompatActivity {
 
                 // 간단한 유효성 검사
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(MainscreenActivity.this, "아이디와 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainscreenActivity.this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
                     // Firebase Authentication을 사용하여 로그인 시도
                     loginUser(email, password);
