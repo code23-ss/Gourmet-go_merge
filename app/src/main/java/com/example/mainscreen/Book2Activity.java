@@ -42,7 +42,7 @@ public class Book2Activity extends AppCompatActivity {
 
         // Initialize views
         radioGroupTitle = findViewById(R.id.radioGroupTitle);
-        radioGrouppeople = findViewById(R.id.radioGrouppeople);
+        radioGrouppeople = findViewById(R.id.radioGroupPeople);
         editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextMobileNumber = findViewById(R.id.editTextMobileNumber);

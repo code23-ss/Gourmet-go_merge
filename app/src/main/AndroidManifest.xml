@@ -42,6 +42,7 @@
         <activity android:name=".Book2Activity"/>
         <activity android:name=".ReviewActivity"/>
         <activity android:name=".WriteCommentActivity"/>
+        <activity android:name=".MyReservationActivity"/>
         <activity android:name=".RestaurantsActivity"/> <!-- 이 줄 추가 -->
 
     </application>

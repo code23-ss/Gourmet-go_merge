@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- TabLayout for Upcoming and Past reservations -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:layout_alignParentTop="true" />
+
+    <!-- ViewPager with fixed height to avoid overlapping other views -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/tabLayout" />
+
+    <!-- TextView shown when there are no upcoming reservations -->
+    <TextView
+        android:id="@+id/noUpcomingReservationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No upcoming reservation yet 😔"
+        android:textColor="@android:color/darker_gray"
+        android:layout_centerInParent="true"
+        android:textSize="18sp"
+        android:visibility="visible"
+        android:gravity="center" />
+
+    <!-- Button to allow user to book a restaurant -->
+    <Button
+        android:id="@+id/bookRestaurantButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book a restaurant"
+        android:backgroundTint="#E24443"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/noUpcomingReservationText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:padding="12dp"
+        android:visibility="visible" />
+
+</RelativeLayout>
