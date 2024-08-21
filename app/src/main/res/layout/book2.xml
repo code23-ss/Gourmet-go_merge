@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- People Section -->
+        <!-- Number of People Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="People"
+                android:text="Number of People"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:padding="8dp"
                 android:fontFamily="sans-serif-smallcaps"
@@ -29,59 +29,59 @@
                 android:textColor="#FFFFFF" />
 
             <RadioGroup
-                android:id="@+id/radioGrouppeople"
+                android:id="@+id/radioGroupPeople"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radiopeople1"
+                    android:id="@+id/radioPeople1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1" />
                 <RadioButton
-                    android:id="@+id/radiopeople2"
+                    android:id="@+id/radioPeople2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"
-                    android:checked="true"/>
+                    android:checked="true" />
                 <RadioButton
-                    android:id="@+id/radiopeople3"
+                    android:id="@+id/radioPeople3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3" />
                 <RadioButton
-                    android:id="@+id/radiopeople4"
+                    android:id="@+id/radioPeople4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4" />
                 <RadioButton
-                    android:id="@+id/radiopeople5"
+                    android:id="@+id/radioPeople5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5" />
                 <RadioButton
-                    android:id="@+id/radiopeople6"
+                    android:id="@+id/radioPeople6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="6" />
                 <RadioButton
-                    android:id="@+id/radiopeopleCustom"
+                    android:id="@+id/radioAdultsCustom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Custom" />
             </RadioGroup>
 
             <EditText
-                android:id="@+id/editTextCustompeople"
+                android:id="@+id/editTextCustomAdults"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter number of People"
+                android:hint="Enter number of adults"
                 android:inputType="number"
                 android:visibility="gone" />
         </LinearLayout>
 
-        <!-- Date & Time Section -->
+        <!-- Dine-in or Takeaway Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,138 +93,168 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date and Time"
+                android:text="Dine-in or Takeaway"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:padding="8dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:layout_marginBottom="16dp"
                 android:background="#E24443"
                 android:textColor="#FFFFFF" />
 
-            <Button
-                android:id="@+id/datePickerButton"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/radioGroupDining"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Date" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/timePickerButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Time" />
+                <RadioButton
+                    android:id="@+id/radioDineIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dine-in"
+                    android:checked="true" />
+                <RadioButton
+                    android:id="@+id/radioTakeaway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Takeaway" />
+            </RadioGroup>
         </LinearLayout>
 
-        <!-- Title Section -->
-        <TextView
+        <!-- Name and Contact Information Section -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:orientation="vertical"
             android:padding="8dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:background="#E24443"
-            android:textColor="#FFFFFF" />
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF">
 
-        <RadioGroup
-            android:id="@+id/radioGroupTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <RadioButton
-                android:id="@+id/radioMr"
-                android:layout_width="wrap_content"
+            <!-- Title Section -->
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mr."
-                android:checked="true"/>
-            <RadioButton
-                android:id="@+id/radioMs"
-                android:layout_width="wrap_content"
+                android:text="Title"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="8dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:background="#E24443"
+                android:textColor="#FFFFFF" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ms." />
-            <RadioButton
-                android:id="@+id/radioMrs"
-                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <RadioButton
+                    android:id="@+id/radioMr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mr."
+                    android:checked="true"/>
+                <RadioButton
+                    android:id="@+id/radioMs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ms." />
+                <RadioButton
+                    android:id="@+id/radioMrs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mrs." />
+                <RadioButton
+                    android:id="@+id/radioMdm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mdm." />
+                <RadioButton
+                    android:id="@+id/radioDr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dr." />
+                <RadioButton
+                    android:id="@+id/radioMx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mx." />
+            </RadioGroup>
+
+            <!-- Name Inputs -->
+            <EditText
+                android:id="@+id/editTextFirstName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mrs." />
-            <RadioButton
-                android:id="@+id/radioMdm"
-                android:layout_width="wrap_content"
+                android:hint="First name"
+                android:inputType="textPersonName"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/editTextLastName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mdm." />
-            <RadioButton
-                android:id="@+id/radioDr"
-                android:layout_width="wrap_content"
+                android:hint="Last name"
+                android:inputType="textPersonName"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Mobile Number -->
+            <EditText
+                android:id="@+id/editTextMobileNumber"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dr." />
-            <RadioButton
-                android:id="@+id/radioMx"
-                android:layout_width="wrap_content"
+                android:hint="Mobile number"
+                android:inputType="phone"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Email -->
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mx." />
-        </RadioGroup>
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
 
-        <!-- Name Inputs -->
-        <EditText
-            android:id="@+id/editTextFirstName"
+        <!-- Waiting Notice -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First name"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="16dp" />
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="#FFFFFF">
 
-        <EditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Last name"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Waiting Notice: Please Check Before Registering"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="8dp"
+                android:background="#FFFFFF"
+                android:textColor="#808080" />
 
-        <!-- Mobile Number -->
-        <EditText
-            android:id="@+id/editTextMobileNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mobile number"
-            android:inputType="phone"
-            android:layout_marginBottom="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. If you do not visit after registering for the waitlist, your visit may be recorded as a no-show. If recorded as a no-show, there may be restrictions on your future visits, so please make sure to check this point."
+                android:padding="8dp"
+                android:textColor="#808080" />
 
-        <!-- Email -->
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. No-shows can cause inconvenience to the establishment and other customers. Therefore, please register for the waitlist only if you are sure to visit."
+                android:padding="8dp"
+                android:textColor="#808080" />
 
-        <!-- Special Requests -->
-        <EditText
-            android:id="@+id/editTextSpecialRequests"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter any special requests here"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            android:layout_marginBottom="32dp" />
-
-        <!-- Updates Checkbox -->
-        <CheckBox
-            android:id="@+id/checkBoxPersonal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="I agree with the personal information collection and usage."
-            android:layout_marginBottom="16dp" />
-
-        <!-- Agreement -->
-        <CheckBox
-            android:id="@+id/checkBoxUpdates"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="If you don't show up at the reserved time, there may be disadvantages."
-            android:layout_marginBottom="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. If you are unable to visit, please cancel the waitlist through the app."
+                android:padding="8dp"
+                android:textColor="#808080" />
+        </LinearLayout>
 
         <!-- Continue Button -->
         <Button

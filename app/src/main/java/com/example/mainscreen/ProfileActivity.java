@@ -2,6 +2,9 @@ package com.example.mainscreen;
 
 import android.os.Bundle;
 import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageView;
+import android.content.Intent;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -18,6 +21,17 @@ public class ProfileActivity extends AppCompatActivity{
         if (actionBar != null) {
             actionBar.hide();
         }
+
+        // reservation ImageView 클릭 리스너 설정
+        ImageView reservationImageView = findViewById(R.id.reservation);
+        reservationImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // MyReservationActivity로 이동
+                Intent intent = new Intent(ProfileActivity.this, MyReservationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private long backKeyPressedTime=0;
     @Override
