@@ -1,6 +1,7 @@
 package com.example.mainscreen;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,17 @@ public class MainscreenActivity extends AppCompatActivity {
         findIDTextView = findViewById(R.id.findID);
         findPasswordTextView = findViewById(R.id.findPassword);
 
+        // 자동 로그인 처리
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString("email", null);
+        String savedPassword = sharedPreferences.getString("password", null);
+
+        if (savedEmail != null && savedPassword != null) {
+            usernameEditText.setText(savedEmail);
+            passwordEditText.setText(savedPassword);
+            loginUser(savedEmail, savedPassword, false); // 자동 로그인은 체크박스 상태에 따라 저장하지 않음
+        }
+
         // 로그인 버튼 클릭 이벤트 리스너 설정
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +73,7 @@ public class MainscreenActivity extends AppCompatActivity {
                     Toast.makeText(MainscreenActivity.this, "이메일과 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
                     // Firebase Authentication을 사용하여 로그인 시도
-                    loginUser(email, password);
+                    loginUser(email, password, saveIdCheckBox.isChecked());
                 }
             }
         });
@@ -94,12 +106,29 @@ public class MainscreenActivity extends AppCompatActivity {
         });
     }
 
-    private void loginUser(String email, String password) {
+    private void loginUser(String email, String password, boolean saveCredentials) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // 로그인 성공, SecondClassActivity로 이동
+                        // 로그인 성공, MainActivity로 이동
                         FirebaseUser user = mAuth.getCurrentUser();
+
+                        // 자동 로그인 설정
+                        if (saveCredentials) {
+                            SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("email", email);
+                            editor.putString("password", password);
+                            editor.apply();
+                        } else {
+                            // 사용자가 체크박스를 체크하지 않은 경우, 저장된 정보를 삭제
+                            SharedPreferences sharedPreferences = getSharedPreferences("sharedPreferences", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove("email");
+                            editor.remove("password");
+                            editor.apply();
+                        }
+
                         Intent intent = new Intent(MainscreenActivity.this, SecondClassActivity.class);
                         startActivity(intent);
                         finish(); // 현재 활동을 종료하여 백 스택에서 제거
@@ -109,6 +138,4 @@ public class MainscreenActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    // 추가적인 기능을 구현할 수 있는 메서드를 여기에 추가할 수 있습니다.
 }

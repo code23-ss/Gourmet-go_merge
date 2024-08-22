@@ -43,6 +43,7 @@
         <activity android:name=".ReviewActivity"/>
         <activity android:name=".WriteCommentActivity"/>
         <activity android:name=".MyReservationActivity"/>
+        <activity android:name=".CollectionsActivity"/>
         <activity android:name=".RestaurantsActivity"/>
         <activity android:name=".AskActivity" />
         <activity android:name=".TermsOfServiceActivity" />

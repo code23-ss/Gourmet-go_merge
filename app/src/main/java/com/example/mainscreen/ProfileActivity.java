@@ -2,17 +2,18 @@ package com.example.mainscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 import android.widget.Toast;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileActivity extends AppCompatActivity {
     private FirebaseFirestore db;
@@ -42,11 +43,19 @@ public class ProfileActivity extends AppCompatActivity {
         // Firestore에서 사용자 ID를 가져와서 TextView에 설정
         fetchUserIdFromFirestore();
 
-        // reservation ImageView 클릭 리스너 설정
+        // 예약 ImageView 클릭 리스너 설정
         ImageView reservationImageView = findViewById(R.id.reservation);
         reservationImageView.setOnClickListener(v -> {
             // MyReservationActivity로 이동
             Intent intent = new Intent(ProfileActivity.this, MyReservationActivity.class);
+            startActivity(intent);
+        });
+
+        // Collections ImageView 클릭 리스너 설정
+        ImageView collectionsImageView = findViewById(R.id.collections);
+        collectionsImageView.setOnClickListener(v -> {
+            // CollectionsActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, CollectionsActivity.class);
             startActivity(intent);
         });
 
