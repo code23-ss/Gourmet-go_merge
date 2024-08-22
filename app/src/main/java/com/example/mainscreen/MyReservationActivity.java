@@ -1,21 +1,25 @@
 package com.example.mainscreen;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
+import android.util.Log;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
-import com.google.android.material.tabs.TabLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyReservationActivity extends AppCompatActivity {
 
-    private TextView noUpcomingReservationText;
-    private Button bookRestaurantButton;
+    private RecyclerView recyclerView;
+    private ReservationAdapter reservationAdapter;
+    private List<Reservation> reservationList;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,30 +32,34 @@ public class MyReservationActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        // TabLayout and ViewPager initialization
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        recyclerView = findViewById(R.id.recycler_view_my_reservations);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        reservationList = new ArrayList<>();
+        reservationAdapter = new ReservationAdapter(reservationList);
+        recyclerView.setAdapter(reservationAdapter);
 
-        // Set up TabLayout and ViewPager (if necessary for future use)
-        // viewPager.setAdapter(...); // Add your ViewPager Adapter here if needed
-        tabLayout.setupWithViewPager(viewPager);
+        db = FirebaseFirestore.getInstance();
 
-        // TextView and Button initialization
-        noUpcomingReservationText = findViewById(R.id.noUpcomingReservationText);
-        bookRestaurantButton = findViewById(R.id.bookRestaurantButton);
+        loadReservationsFromFirestore();
+    }
 
-        // Show the TextView and Button since we don't have upcoming reservations
-        noUpcomingReservationText.setVisibility(View.VISIBLE);
-        bookRestaurantButton.setVisibility(View.VISIBLE);
-
-        // Set up the button click listener to start BookActivity
-        bookRestaurantButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start BookActivity when the button is clicked
-                Intent intent = new Intent(MyReservationActivity.this, BookActivity.class);
-                startActivity(intent);
-            }
-        });
+    private void loadReservationsFromFirestore() {
+        db.collection("reservations")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null) {
+                            for (DocumentSnapshot document : querySnapshot) {
+                                Reservation reservation = document.toObject(Reservation.class);
+                                reservationList.add(reservation);
+                            }
+                            reservationAdapter.notifyDataSetChanged();
+                        }
+                    } else {
+                        Log.w("MyReservationActivity", "Error getting documents.", task.getException());
+                        Toast.makeText(this, "Failed to load reservations.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
