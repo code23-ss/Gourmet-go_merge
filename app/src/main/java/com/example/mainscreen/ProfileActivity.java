@@ -1,11 +1,12 @@
 package com.example.mainscreen;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
 import android.widget.ImageView;
-import android.content.Intent;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -45,45 +46,37 @@ public class ProfileActivity extends AppCompatActivity {
 
         // reservation ImageView 클릭 리스너 설정
         ImageView reservationImageView = findViewById(R.id.reservation);
-        reservationImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // MyReservationActivity로 이동
-                Intent intent = new Intent(ProfileActivity.this, MyReservationActivity.class);
-                startActivity(intent);
-            }
+        reservationImageView.setOnClickListener(v -> {
+            // MyReservationActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, MyReservationActivity.class);
+            startActivity(intent);
         });
 
         // TextView 클릭 리스너 설정
         TextView faqTextView = findViewById(R.id.ask);
-        faqTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // FAQActivity로 이동
-                Intent intent = new Intent(ProfileActivity.this, AskActivity.class);
-                startActivity(intent);
-            }
+        faqTextView.setOnClickListener(v -> {
+            // FAQActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, AskActivity.class);
+            startActivity(intent);
         });
 
         TextView termsServiceTextView = findViewById(R.id.terms_service);
-        termsServiceTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TermsOfServiceActivity로 이동
-                Intent intent = new Intent(ProfileActivity.this, TermsOfServiceActivity.class);
-                startActivity(intent);
-            }
+        termsServiceTextView.setOnClickListener(v -> {
+            // TermsOfServiceActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, TermsOfServiceActivity.class);
+            startActivity(intent);
         });
 
         TextView privacyPolicyTextView = findViewById(R.id.privacy_policy);
-        privacyPolicyTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // PrivacyPolicyActivity로 이동
-                Intent intent = new Intent(ProfileActivity.this, PrivacyPolicyActivity.class);
-                startActivity(intent);
-            }
+        privacyPolicyTextView.setOnClickListener(v -> {
+            // PrivacyPolicyActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, PrivacyPolicyActivity.class);
+            startActivity(intent);
         });
+
+        // Logout TextView 클릭 리스너 설정
+        TextView logoutTextView = findViewById(R.id.logout);
+        logoutTextView.setOnClickListener(v -> logoutUser());
     }
 
     private void fetchUserIdFromFirestore() {
@@ -108,8 +101,16 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String getCurrentUserId() {
-        // 현재 로그인한 사용자의 ID를 반환하는 로직을 여기에 구현해야 합니다.
         return FirebaseAuth.getInstance().getCurrentUser().getUid(); // 실제 사용자 ID로 대체
+    }
+
+    private void logoutUser() {
+        FirebaseAuth.getInstance().signOut(); // Firebase에서 로그아웃 수행
+        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+        // 로그인 화면으로 이동
+        Intent intent = new Intent(ProfileActivity.this, MainscreenActivity.class);
+        startActivity(intent);
+        finish(); // 현재 액티비티 종료
     }
 
     private long backKeyPressedTime = 0;
