@@ -47,7 +47,9 @@
         <activity android:name=".AskActivity" />
         <activity android:name=".TermsOfServiceActivity" />
         <activity android:name=".PrivacyPolicyActivity" />
-        <activity android:name=".DeleteAccountActivity" /><!-- 이 줄 추가 -->
+        <activity android:name=".DeleteAccountActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".ChangeEmailActivity" /><!-- 이 줄 추가 -->
 
     </application>
 

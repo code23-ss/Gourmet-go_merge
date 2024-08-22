@@ -2,10 +2,8 @@ package com.example.mainscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -29,7 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
         // Firestore 인스턴스 초기화
         db = FirebaseFirestore.getInstance();
 
-        // 현재 사용자 ID 설정 (로그인한 사용자 ID로 대체)
+        // 현재 사용자 ID 설정
         currentUserId = getCurrentUserId(); // 이 함수는 실제로 사용자의 ID를 반환해야 합니다.
 
         // UI 요소 초기화
@@ -85,31 +83,65 @@ public class ProfileActivity extends AppCompatActivity {
         // Logout TextView 클릭 리스너 설정
         TextView logoutTextView = findViewById(R.id.logout);
         logoutTextView.setOnClickListener(v -> logoutUser());
+
+        // Change Password TextView 클릭 리스너 설정
+        TextView changePasswordTextView = findViewById(R.id.change_password);
+        changePasswordTextView.setOnClickListener(v -> {
+            // ChangePasswordActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
+            startActivity(intent);
+        });
+
+        // Change Email TextView 클릭 리스너 설정
+        TextView changeEmailTextView = findViewById(R.id.change_email);
+        changeEmailTextView.setOnClickListener(v -> {
+            // ChangeEmailActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, ChangeEmailActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void fetchUserIdFromFirestore() {
         if (currentUserId != null) {
+            // 디버깅: 로그를 통해 현재 사용자 ID 확인
+            Toast.makeText(ProfileActivity.this, "Fetching data for user ID: " + currentUserId, Toast.LENGTH_SHORT).show();
+
+            // 현재 사용자의 Firestore 문서 가져오기
             db.collection("users").document(currentUserId).get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
+                                // 디버깅: 문서 존재 여부 및 필드 값을 확인
+                                Toast.makeText(ProfileActivity.this, "Document exists: " + document.getId(), Toast.LENGTH_SHORT).show();
+
                                 String userId = document.getString("ID"); // Firestore 문서에서 'ID' 필드 가져오기 (대문자)
-                                userIdTextView.setText(userId);
+                                if (userId != null) {
+                                    userIdTextView.setText(userId);
+                                } else {
+                                    Toast.makeText(ProfileActivity.this, "ID field is missing in the document", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
-                                Toast.makeText(ProfileActivity.this, "No such document", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, "No such document. Check Firestore document path and ID", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(ProfileActivity.this, "Failed to get document", Toast.LENGTH_SHORT).show();
+                            // 디버깅: 실패 이유를 로그로 출력
+                            Toast.makeText(ProfileActivity.this, "Failed to get document. Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {
-            Toast.makeText(this, "User ID is not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User ID is not available. Check authentication state", Toast.LENGTH_SHORT).show();
         }
     }
 
     private String getCurrentUserId() {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid(); // 실제 사용자 ID로 대체
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            return auth.getCurrentUser().getUid(); // 실제 사용자 ID를 반환
+        } else {
+            // 사용자 로그인 상태가 아니면 null 반환
+            return null;
+        }
     }
 
     private void logoutUser() {
@@ -129,7 +161,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "'Back' button pressed again to exit.", Toast.LENGTH_SHORT).show();
             return;
         }
 
