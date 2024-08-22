@@ -46,7 +46,8 @@
         <activity android:name=".RestaurantsActivity"/>
         <activity android:name=".AskActivity" />
         <activity android:name=".TermsOfServiceActivity" />
-        <activity android:name=".PrivacyPolicyActivity" /><!-- 이 줄 추가 -->
+        <activity android:name=".PrivacyPolicyActivity" />
+        <activity android:name=".DeleteAccountActivity" /><!-- 이 줄 추가 -->
 
     </application>
 

@@ -55,7 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
         // TextView 클릭 리스너 설정
         TextView faqTextView = findViewById(R.id.ask);
         faqTextView.setOnClickListener(v -> {
-            // FAQActivity로 이동
+            // AskActivity로 이동
             Intent intent = new Intent(ProfileActivity.this, AskActivity.class);
             startActivity(intent);
         });
@@ -71,6 +71,14 @@ public class ProfileActivity extends AppCompatActivity {
         privacyPolicyTextView.setOnClickListener(v -> {
             // PrivacyPolicyActivity로 이동
             Intent intent = new Intent(ProfileActivity.this, PrivacyPolicyActivity.class);
+            startActivity(intent);
+        });
+
+        // Delete Account TextView 클릭 리스너 설정
+        TextView deleteAccountTextView = findViewById(R.id.delete_account);
+        deleteAccountTextView.setOnClickListener(v -> {
+            // DeleteAccountActivity로 이동
+            Intent intent = new Intent(ProfileActivity.this, DeleteAccountActivity.class);
             startActivity(intent);
         });
 
