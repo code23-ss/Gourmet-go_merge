@@ -144,10 +144,10 @@
                 android:layout_marginEnd="16dp" />
 
             <TextView
-                android:id="@+id/title_community"
+                android:id="@+id/title_support"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Community"
+                android:text="Support"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/change_email"
@@ -156,23 +156,34 @@
                 android:layout_marginStart="16dp" />
 
             <TextView
-                android:id="@+id/restriction_history"
+                android:id="@+id/ask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restriction history"
+                android:text="Ask"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/title_community"
+                app:layout_constraintTop_toBottomOf="@id/title_support"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp" />
 
             <TextView
-                android:id="@+id/community_rules"
+                android:id="@+id/terms_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Community rules"
+                android:text="Terms of service"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/restriction_history"
+                app:layout_constraintTop_toBottomOf="@id/ask"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/privacy_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Privacy policy"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/terms_service"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp" />
@@ -181,7 +192,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintTop_toBottomOf="@id/community_rules"
+                app:layout_constraintTop_toBottomOf="@id/privacy_policy"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="24dp"
@@ -189,67 +200,35 @@
                 android:layout_marginEnd="16dp" />
 
             <TextView
-                android:id="@+id/title_application"
+                android:id="@+id/etc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Application"
+                android:text="ETC"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/community_rules"
+                app:layout_constraintTop_toBottomOf="@id/privacy_policy"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="16dp" />
 
             <TextView
-                android:id="@+id/dark_mode"
+                android:id="@+id/delete_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dark mode"
+                android:text="Delete account"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/title_application"
+                app:layout_constraintTop_toBottomOf="@id/etc"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp" />
 
             <TextView
-                android:id="@+id/dark_mode_value"
+                android:id="@+id/logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="System default"
+                android:text="Logout"
                 android:textSize="16sp"
-                app:layout_constraintTop_toTopOf="@id/dark_mode"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp" />
-
-            <TextView
-                android:id="@+id/notification_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Notification settings"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/dark_mode"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp" />
-
-            <TextView
-                android:id="@+id/passcode_lock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Passcode lock"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/notification_settings"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp" />
-
-            <TextView
-                android:id="@+id/clear_cache_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Clear cache data"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/passcode_lock"
+                app:layout_constraintTop_toBottomOf="@id/delete_account"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp" />

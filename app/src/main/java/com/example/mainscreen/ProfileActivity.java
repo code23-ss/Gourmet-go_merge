@@ -53,6 +53,37 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // TextView 클릭 리스너 설정
+        TextView faqTextView = findViewById(R.id.ask);
+        faqTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // FAQActivity로 이동
+                Intent intent = new Intent(ProfileActivity.this, AskActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView termsServiceTextView = findViewById(R.id.terms_service);
+        termsServiceTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TermsOfServiceActivity로 이동
+                Intent intent = new Intent(ProfileActivity.this, TermsOfServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView privacyPolicyTextView = findViewById(R.id.privacy_policy);
+        privacyPolicyTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // PrivacyPolicyActivity로 이동
+                Intent intent = new Intent(ProfileActivity.this, PrivacyPolicyActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void fetchUserIdFromFirestore() {
@@ -78,8 +109,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private String getCurrentUserId() {
         // 현재 로그인한 사용자의 ID를 반환하는 로직을 여기에 구현해야 합니다.
-        // 예: FirebaseAuth.getInstance().getCurrentUser().getUid();
-        // 테스트용으로 가상의 사용자 ID를 반환합니다.
         return FirebaseAuth.getInstance().getCurrentUser().getUid(); // 실제 사용자 ID로 대체
     }
 

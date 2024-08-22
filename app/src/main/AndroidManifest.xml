@@ -43,7 +43,10 @@
         <activity android:name=".ReviewActivity"/>
         <activity android:name=".WriteCommentActivity"/>
         <activity android:name=".MyReservationActivity"/>
-        <activity android:name=".RestaurantsActivity"/> <!-- 이 줄 추가 -->
+        <activity android:name=".RestaurantsActivity"/>
+        <activity android:name=".AskActivity" />
+        <activity android:name=".TermsOfServiceActivity" />
+        <activity android:name=".PrivacyPolicyActivity" /><!-- 이 줄 추가 -->
 
     </application>
 
